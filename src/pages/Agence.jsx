@@ -3,7 +3,7 @@ import React from 'react'
 const Agence = () => {
   return (
     <div>
-      <div className='section1'>
+      <div className='section_1'>
         <div className='bg-red-500 w-[15vw] h-[20vw] overflow-hidden rounded-3xl absolute top-[20%] left-[31%]'>
           <img className='w-full h-full' src="https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg" alt="" />
         </div>
@@ -16,7 +16,7 @@ const Agence = () => {
           </div>
         </div>
       </div>
-      <div className="section2 h-screen">
+      <div className="section_2 h-screen">
 
       </div>
 
