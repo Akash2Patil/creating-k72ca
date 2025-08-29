@@ -8,9 +8,7 @@ import Stairs from './components/anime/Stairs.jsx'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
   <StrictMode>
-    <Stairs>
     <App />
-    </Stairs>
   </StrictMode>
   </BrowserRouter>
 )

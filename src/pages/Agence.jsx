@@ -4,43 +4,60 @@ import { ScrollTrigger } from 'gsap/all';
 import React, { useRef } from 'react'
 
 const Agence = () => {
-  const imgdivRef = useRef(null);
+ gsap.registerPlugin(ScrollTrigger)
+
+  const imageDivRef = useRef(null)
+  const imageRef = useRef(null)
+
   const imageArray = [
-  "https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/Olivier_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/Lawrence_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/HugoJoseph_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/ChantalG_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/MyleneS_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/SophieA_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/Claire_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/Michele_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/MEL_480x640-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/CAMILLE_480x640_2-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/MAXIME_480x640_2-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/MEGGIE_480x640_2-480x640.jpg",
-  "https://k72.ca/uploads/teamMembers/joel_480x640_3-480x640.jpg"
-];
+    'https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/Olivier_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/Lawrence_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/HugoJoseph_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/ChantalG_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/MyleneS_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/SophieA_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/Claire_480x640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/Michele_480X640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/MEL_480X640-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/CAMILLE_480X640_2-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/MAXIME_480X640_2-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/MEGGIE_480X640_2-480x640.jpg',
+    'https://k72.ca/uploads/teamMembers/joel_480X640_3-480x640.jpg',
+  ]
 
-  gsap.registerPlugin(ScrollTrigger)
+  useGSAP(function () {
 
-  useGSAP(()=>{
-    gsap.to(imgdivRef.current,{
-      scrollTrigger:{
-        trigger:imgdivRef.current,
-        markers:true,
-        start:'top 20%',
-        end:'top -120%',
-        pin:true,
-        scrub:true
+    gsap.to(imageDivRef.current, {
+      scrollTrigger: {
+        trigger: imageDivRef.current,
+        // markers: true,
+        start: 'top 28%',
+        end: 'top -105%',
+        pin: true,
+        pinSpacing: true,
+        pinReparent: true,
+        pinType: 'transform',
+        scrub: 1, // smooth scrubbing with 1s easing
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (elem) => {
+          let imageIndex;
+          if (elem.progress < 1) {
+            imageIndex = Math.floor(elem.progress * imageArray.length)
+          } else {
+            imageIndex = imageArray.length - 1
+          }
+          imageRef.current.src = imageArray[imageIndex]
+        }
       }
     })
   })
   return (
     <div>
       <div className='section_1'>
-        <div ref={imgdivRef} className='bg-red-500 w-[15vw] h-[20vw] overflow-hidden rounded-3xl absolute top-[20%] left-[31%]'>
-          <img className='w-full h-full' src="https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg" alt="" />
+        <div ref={imageDivRef} className='bg-red-500 w-[15vw] h-[20vw] overflow-hidden rounded-3xl absolute top-[20%] left-[31%]'>
+          <img ref={imageRef} className='w-full h-full' src="https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg" alt="" />
         </div>
         <div className='overflow-hidden relative'>
           <div className='w-screen mt-[50vh]'>
