@@ -1,10 +1,45 @@
-import React from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all';
+import React, { useRef } from 'react'
 
 const Agence = () => {
+  const imgdivRef = useRef(null);
+  const imageArray = [
+  "https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/Olivier_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/Lawrence_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/HugoJoseph_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/ChantalG_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/MyleneS_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/SophieA_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/Claire_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/Michele_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/MEL_480x640-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/CAMILLE_480x640_2-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/MAXIME_480x640_2-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/MEGGIE_480x640_2-480x640.jpg",
+  "https://k72.ca/uploads/teamMembers/joel_480x640_3-480x640.jpg"
+];
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  useGSAP(()=>{
+    gsap.to(imgdivRef.current,{
+      scrollTrigger:{
+        trigger:imgdivRef.current,
+        markers:true,
+        start:'top 20%',
+        end:'top -120%',
+        pin:true,
+        scrub:true
+      }
+    })
+  })
   return (
     <div>
       <div className='section_1'>
-        <div className='bg-red-500 w-[15vw] h-[20vw] overflow-hidden rounded-3xl absolute top-[20%] left-[31%]'>
+        <div ref={imgdivRef} className='bg-red-500 w-[15vw] h-[20vw] overflow-hidden rounded-3xl absolute top-[20%] left-[31%]'>
           <img className='w-full h-full' src="https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg" alt="" />
         </div>
         <div className='overflow-hidden relative'>
